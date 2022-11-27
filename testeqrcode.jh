@@ -1,0 +1,11 @@
+
+entity Page {
+	url String,
+    title String,
+    text String,
+    image Blob,
+    logo Blob,
+    qrcode String
+    
+}
+
