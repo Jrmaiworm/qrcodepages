@@ -3,7 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
 import { openFile, byteSize } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { QRCodeSVG } from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
+import Speech from 'react-speech';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
@@ -11,6 +13,16 @@ import { getEntity } from './page.reducer';
 
 export const PageDetail = () => {
   const dispatch = useAppDispatch();
+  const styles = {
+    width: '28',
+    height: '28',
+    cursor: 'pointer',
+    pointerEvents: 'none',
+    outline: 'none',
+    backgroundColor: 'yellow',
+    border: 'solid 1px rgba(255,255,255,1)',
+    borderRadius: 6,
+  };
 
   const { id } = useParams<'id'>();
 
@@ -39,7 +51,9 @@ export const PageDetail = () => {
           <dt>
             <span id="text">Text</span>
           </dt>
+
           <dd>{pageEntity.text}</dd>
+          <Speech textAsButton={true} style={{ width: '50px', height: '50px' }} displayText="Ouvir o texto" text={`${pageEntity.text}`} />
           <dt>
             <span id="image">Image</span>
           </dt>
@@ -71,6 +85,9 @@ export const PageDetail = () => {
           </dt>
           <dd>{pageEntity.qrcode}</dd>
         </dl>
+        <div>
+          <QRCodeCanvas value={`${pageEntity.qrcode}`} />
+        </div>
         <Button tag={Link} to="/page" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
