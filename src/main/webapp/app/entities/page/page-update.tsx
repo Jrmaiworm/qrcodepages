@@ -29,7 +29,7 @@ export const PageUpdate = () => {
   };
 
   useEffect(() => {
-    const urlLocal = window.location;
+    const urlLocal = window.location.pathname;
     console.log('url', urlLocal);
     if (isNew) {
       dispatch(reset());
