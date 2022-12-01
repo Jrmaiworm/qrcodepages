@@ -16,7 +16,7 @@ export const PageDetail = () => {
 
   const { id } = useParams<'id'>();
 
-  const qrcode = window.location.pathname;
+  const qrcode = window.location;
   useEffect(() => {
     dispatch(getEntity(id));
   }, []);
@@ -50,7 +50,6 @@ export const PageDetail = () => {
             displayText="Ouvir Texto"
             text={`${pageEntity.text}`}
           />
-          ,
         </div>
         <Button tag={Link} to="/page" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
