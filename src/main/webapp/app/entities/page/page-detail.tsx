@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
 import { openFile, byteSize } from 'react-jhipster';
@@ -8,6 +8,7 @@ import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import QRCode from 'react-qr-code';
 import Speech from 'react-speech';
+import ReactToPrint, { useReactToPrint } from 'react-to-print';
 
 import { getEntity } from './page.reducer';
 
@@ -20,6 +21,10 @@ export const PageDetail = () => {
   useEffect(() => {
     dispatch(getEntity(id));
   }, []);
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const pageEntity = useAppSelector(state => state.page.entity);
   return (
@@ -34,23 +39,34 @@ export const PageDetail = () => {
             <span id="text">Texto descrição</span>
           </dt>
           <dd>{pageEntity.text}</dd>
-
+          <div style={{ margin: '10px' }}>
+            <Speech
+              Speech
+              style={{ width: '28', height: '28', cursor: 'pointer', pointerEvents: 'none', outline: 'none', backgroundColor: 'yellow' }}
+              textAsButton={true}
+              displayText="Ouvir Texto"
+              text={`${pageEntity.text}`}
+            />
+          </div>
           <dt>
             <span id="qrcode">Qrcode</span>
           </dt>
+
           <dd>
-            <QRCode size={256} style={{ height: 'auto', maxWidth: '10%', width: '10%' }} value={`${qrcode}`} viewBox={`0 0 256 256`} />
+            <div style={{ margin: '10px' }}>
+              <QRCode
+                size={256}
+                style={{ height: 'auto', maxWidth: '10%', width: '10%' }}
+                value={`${qrcode}`}
+                viewBox={`0 0 256 256`}
+                ref={componentRef}
+              />
+            </div>
+            <div style={{ margin: '10px' }}>
+              <Button onClick={handlePrint}>Imprimir qrcode!</Button>
+            </div>
           </dd>
         </dl>
-        <div>
-          <Speech
-            Speech
-            style={{ width: '28', height: '28', cursor: 'pointer', pointerEvents: 'none', outline: 'none', backgroundColor: 'yellow' }}
-            textAsButton={true}
-            displayText="Ouvir Texto"
-            text={`${pageEntity.text}`}
-          />
-        </div>
         <Button tag={Link} to="/page" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
         </Button>
