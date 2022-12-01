@@ -34,32 +34,7 @@ export const PageDetail = () => {
             <span id="text">Texto descrição</span>
           </dt>
           <dd>{pageEntity.text}</dd>
-          {/* <dt>
-            <span id="image">Image</span>
-          </dt> */}
-          {/* <dd>
-            {pageEntity.image ? (
-              <div>
-                {pageEntity.imageContentType ? <a onClick={openFile(pageEntity.imageContentType, pageEntity.image)}>Open&nbsp;</a> : null}
-                <span>
-                  {pageEntity.imageContentType}, {byteSize(pageEntity.image)}
-                </span>
-              </div>
-            ) : null}
-          </dd> */}
-          {/* <dt> */}
-          {/* <span id="logo">Logo</span>
-          </dt>
-          <dd>
-            {pageEntity.logo ? (
-              <div>
-                {pageEntity.logoContentType ? <a onClick={openFile(pageEntity.logoContentType, pageEntity.logo)}>Open&nbsp;</a> : null}
-                <span>
-                  {pageEntity.logoContentType}, {byteSize(pageEntity.logo)}
-                </span>
-              </div>
-            ) : null}
-          </dd> */}
+
           <dt>
             <span id="qrcode">Qrcode</span>
           </dt>
