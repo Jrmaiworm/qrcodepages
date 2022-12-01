@@ -30,7 +30,7 @@ export const PageUpdate = () => {
 
   useEffect(() => {
     const urlLocal = window.location;
-    console.log('url', urlLocal)
+    console.log('url', urlLocal);
     if (isNew) {
       dispatch(reset());
     } else {
@@ -82,14 +82,10 @@ export const PageUpdate = () => {
               {!isNew ? <ValidatedField name="id" required readOnly id="page-id" label="ID" validate={{ required: true }} /> : null}
               <ValidatedField label="Url" id="page-url" name="url" data-cy="url" type="text" />
               <ValidatedField label="Title" id="page-title" name="title" data-cy="title" type="text" />
-              <ValidatedField label="Text" id="page-text" name="text" data-cy="text" type="text" />
+              <ValidatedField label="Text" id="page-text" name="text" data-cy="text" type="textarea" />
               <ValidatedBlobField label="Image" id="page-image" name="image" data-cy="image" openActionLabel="Open" />
               <ValidatedBlobField label="Logo" id="page-logo" name="logo" data-cy="logo" openActionLabel="Open" />
-
-
               <ValidatedField label="Qrcode" id="page-qrcode" name="qrcode" data-cy="qrcode" type="text" />
-
-
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/page" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
