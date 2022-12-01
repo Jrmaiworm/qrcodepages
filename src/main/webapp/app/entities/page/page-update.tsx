@@ -29,6 +29,8 @@ export const PageUpdate = () => {
   };
 
   useEffect(() => {
+    const urlLocal = window.location;
+    console.log('url', urlLocal)
     if (isNew) {
       dispatch(reset());
     } else {
@@ -83,7 +85,11 @@ export const PageUpdate = () => {
               <ValidatedField label="Text" id="page-text" name="text" data-cy="text" type="text" />
               <ValidatedBlobField label="Image" id="page-image" name="image" data-cy="image" openActionLabel="Open" />
               <ValidatedBlobField label="Logo" id="page-logo" name="logo" data-cy="logo" openActionLabel="Open" />
+
+
               <ValidatedField label="Qrcode" id="page-qrcode" name="qrcode" data-cy="qrcode" type="text" />
+
+
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/page" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
